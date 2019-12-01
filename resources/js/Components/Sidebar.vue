@@ -1,64 +1,50 @@
 <template>
-    <v-toolbar
-        color="blue darken-3"
-        dark
-        app
-        :clipped-left="$vuetify.breakpoint.mdAndUp"
+    <v-navigation-drawer
         fixed
+        :clipped="$vuetify.breakpoint.mdAndUp"
+        app
+        :value="drawer"
     >
-        <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-            <v-toolbar-side-icon
-                @click.stop="state = !state"
-                v-model="state"
-            ></v-toolbar-side-icon>
-            <span class="hidden-sm-and-down">Plan Estudios</span>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn icon>
-            <v-icon>apps</v-icon>
-        </v-btn>
-        <v-btn icon>
-            <v-icon>notifications</v-icon>
-        </v-btn>
-        <v-btn icon large>
-            <v-avatar size="32px" tile>
-                <img
-                    src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                    alt="Vuetify"
-                />
-            </v-avatar>
-        </v-btn>
-    </v-toolbar>
+        <v-list dense>
+            <v-list-tile
+                value="true"
+                v-for="(item, i) in items"
+                :key="i"
+                :to="item.path"
+            >
+                <v-list-tile-action>
+                    <v-icon light v-html="item.icon"></v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-title v-text="item.text"></v-list-tile-title>
+                </v-list-tile-content>
+            </v-list-tile>
+        </v-list>
+    </v-navigation-drawer>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 export default {
     data() {
         return {
-            state: true,
-            name: ""
+            dialog: true,
+            items: [
+                { icon: "chat", text: "Clientes", path: "clientes" },
+                {
+                    icon: "business",
+                    text: "Habitaciones",
+                    path: "habitaciones"
+                },
+                { icon: "dialpad", text: "Reservas", path: "reservas" }
+            ]
         };
-    },
-    watch: {
-        // whenever question changes, this function will run
-        state: function() {
-            console.log("hola");
-        }
     },
     computed: {
         ...mapState(["drawer"])
     },
-    watch: {
-        state: function(val, old) {
-            return this.sendState(val);
-        }
-    },
-    methods: {
-        ...mapActions(["modifyDrawer"]),
-        sendState: function(value) {
-            this.modifyDrawer(value);
-        }
+    props: {
+        source: String
     }
 };
 </script>
