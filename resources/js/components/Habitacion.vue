@@ -106,7 +106,7 @@ export default {
     habitaciones: [],
     estados: [
       { nombre: "Disponible", valor: 1 },
-      { nombre: "Ocupado", value: 0 }
+      { nombre: "Ocupado", valor: 0 }
     ],
     editedIndex: -1,
     editedItem: {
