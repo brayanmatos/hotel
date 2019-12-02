@@ -25,3 +25,15 @@ Vue.component("sidebar", require("./components/Sidebar.vue").default);
 Vue.component("cliente", require("./components/Cliente.vue").default);
 Vue.component("habitacion", require("./components/Habitacion.vue").default);
 Vue.component("reserva", require("./components/Reserva.vue").default);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+//Esto faltaba
+new Vue({
+    router,
+    store
+}).$mount("#app");

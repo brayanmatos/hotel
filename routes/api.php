@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('cliente/store', 'ClienteController@store');
-Route::post('habitacion/store', 'HabitacionController@store');
-Route::post('reserva/store', 'ReservaController@store');
+Route::post('clientes/store', 'ClienteController@store');
+Route::get('clientes', 'ClienteController@index');
+Route::post('habitaciones/store', 'HabitacionController@store');
+Route::post('reservas/store', 'ReservaController@store');
