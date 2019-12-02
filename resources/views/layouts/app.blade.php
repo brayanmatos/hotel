@@ -13,7 +13,9 @@
 
     </head>
     <body>
+    Hola mundo
         <div id="app">
+        hola
             <v-app id="inspire">
                     <sidebar></sidebar>
                     <v-content>
