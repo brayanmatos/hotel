@@ -20,6 +20,13 @@ class HabitacionController extends Controller
         return $habitaciones;
     }
 
+    public function habitacionesDisponibles()
+    {
+        //
+        $habitaciones = DB::table('habitacions')->where("estado",'!=',0)->get();
+        return $habitaciones;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

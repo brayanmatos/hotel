@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reserva;
+use App\Habitacion;
 use Illuminate\Http\Request;
 use DB;
 
@@ -48,7 +49,10 @@ class ReservaController extends Controller
             "total"=>$request->total,
 
      ]);
-     return response()->json(['message'=>"Reserva creado"], 200);
+
+     Habitacion::where('id',$request->habitacion_id)->update(['estado'=>0]);
+
+     return response()->json(['message'=>"Reserva creada"], 200);
      }
 
     /**

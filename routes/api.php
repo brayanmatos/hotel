@@ -21,6 +21,8 @@ Route::get('clientes', 'ClienteController@index');
 
 Route::post('habitaciones/store', 'HabitacionController@store');
 Route::get('habitaciones', 'HabitacionController@index');
+Route::get('habitaciones-disponibles', 'HabitacionController@habitacionesDisponibles');
+
 
 Route::post('reservas/store', 'ReservaController@store');
 Route::get('reservas', 'ReservaController@index');

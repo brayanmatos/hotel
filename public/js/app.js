@@ -2024,6 +2024,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2042,6 +2048,13 @@ __webpack_require__.r(__webpack_exports__);
         value: "precio"
       }],
       habitaciones: [],
+      estados: [{
+        nombre: "Disponible",
+        valor: 1
+      }, {
+        nombre: "Ocupado",
+        value: 0
+      }],
       editedIndex: -1,
       editedItem: {
         codigo: "",
@@ -2432,7 +2445,7 @@ __webpack_require__.r(__webpack_exports__);
     gethabitaciones: function gethabitaciones() {
       var _this4 = this;
 
-      axios.get("/api/habitaciones").then(function (_ref4) {
+      axios.get("/api/habitaciones-disponibles").then(function (_ref4) {
         var data = _ref4.data;
         _this4.habitaciones = data;
       });
@@ -22473,8 +22486,13 @@ var render = function() {
                                               }
                                             },
                                             [
-                                              _c("v-text-field", {
-                                                attrs: { label: "Estado" },
+                                              _c("v-select", {
+                                                attrs: {
+                                                  items: _vm.estados,
+                                                  "item-text": "nombre",
+                                                  "item-value": "valor",
+                                                  label: "Estdo"
+                                                },
                                                 model: {
                                                   value: _vm.editedItem.estado,
                                                   callback: function($$v) {
@@ -22590,7 +22608,13 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.estado))
+                                _vm._v(
+                                  _vm._s(
+                                    props.item.estado == 1
+                                      ? "Disponible"
+                                      : "Ocupado"
+                                  )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [

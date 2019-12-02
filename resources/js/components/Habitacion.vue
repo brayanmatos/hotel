@@ -35,7 +35,13 @@
                         ></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
-                        <v-text-field v-model="editedItem.estado" label="Estado"></v-text-field>
+                        <v-select
+                          :items="estados"
+                          v-model="editedItem.estado"
+                          item-text="nombre"
+                          item-value="valor"
+                          label="Estdo"
+                        ></v-select>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
                         <v-text-field v-model="editedItem.precio" label="Precio"></v-text-field>
@@ -56,7 +62,7 @@
             <template v-slot:items="props">
               <td class="text-xs-left">{{ props.item.codigo }}</td>
               <td class="text-xs-left">{{ props.item.descripcion }}</td>
-              <td class="text-xs-left">{{ props.item.estado }}</td>
+              <td class="text-xs-left">{{ props.item.estado == 1 ? "Disponible" : "Ocupado" }}</td>
 
               <td class="text-xs-left">{{ props.item.precio }}</td>
 
@@ -98,6 +104,10 @@ export default {
       { text: "Precio", value: "precio" }
     ],
     habitaciones: [],
+    estados: [
+      { nombre: "Disponible", valor: 1 },
+      { nombre: "Ocupado", value: 0 }
+    ],
     editedIndex: -1,
     editedItem: {
       codigo: "",

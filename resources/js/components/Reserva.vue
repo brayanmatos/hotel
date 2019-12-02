@@ -172,7 +172,7 @@ export default {
       });
     },
     gethabitaciones() {
-      axios.get("/api/habitaciones").then(({ data }) => {
+      axios.get("/api/habitaciones-disponibles").then(({ data }) => {
         this.habitaciones = data;
       });
     },
