@@ -40,7 +40,7 @@
                           v-model="editedItem.estado"
                           item-text="nombre"
                           item-value="valor"
-                          label="Estdo"
+                          label="Estado"
                         ></v-select>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
@@ -171,11 +171,6 @@ export default {
       }
       if (!this.editedItem.descripcion) {
         notify.error("Ingrese descripcion ");
-        return;
-      }
-
-      if (!this.editedItem.estado) {
-        notify.error("Ingrese estado ");
         return;
       }
 

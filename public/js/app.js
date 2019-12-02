@@ -2053,7 +2053,7 @@ __webpack_require__.r(__webpack_exports__);
         valor: 1
       }, {
         nombre: "Ocupado",
-        value: 0
+        valor: 0
       }],
       editedIndex: -1,
       editedItem: {
@@ -2130,11 +2130,6 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.editedItem.descripcion) {
         notify.error("Ingrese descripcion ");
-        return;
-      }
-
-      if (!this.editedItem.estado) {
-        notify.error("Ingrese estado ");
         return;
       }
 
@@ -22500,7 +22495,7 @@ var render = function() {
                                                   items: _vm.estados,
                                                   "item-text": "nombre",
                                                   "item-value": "valor",
-                                                  label: "Estdo"
+                                                  label: "Estado"
                                                 },
                                                 model: {
                                                   value: _vm.editedItem.estado,
