@@ -47,11 +47,17 @@
                             label="Habitacion"
                             item-text="codigo"
                             item-value="id"
+                            return-object
+                            @change="actualizarTotal()"
                           ></v-select>
                         </v-flex>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
-                        <v-text-field v-model="editedItem.dias" label="Dias"></v-text-field>
+                        <v-text-field
+                          v-model="editedItem.dias"
+                          label="Dias"
+                          @change="actualizarTotal()"
+                        ></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
                         <v-text-field v-model="editedItem.total" label="Total"></v-text-field>
@@ -176,6 +182,10 @@ export default {
         this.habitaciones = data;
       });
     },
+    actualizarTotal() {
+      this.editedItem.total =
+        this.editedItem.dias * this.editedItem.habitacion_id.precio;
+    },
     close() {
       this.dialog = false;
       setTimeout(() => {
@@ -213,7 +223,7 @@ export default {
       const data = {
         fecha: this.editedItem.fecha,
         cliente_id: this.editedItem.cliente_id,
-        habitacion_id: this.editedItem.habitacion_id,
+        habitacion_id: this.editedItem.habitacion_id.id,
         dias: this.editedItem.dias,
         total: this.editedItem.total
       };

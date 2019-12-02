@@ -2356,6 +2356,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2450,6 +2456,9 @@ __webpack_require__.r(__webpack_exports__);
         _this4.habitaciones = data;
       });
     },
+    actualizarTotal: function actualizarTotal() {
+      this.editedItem.total = this.editedItem.dias * this.editedItem.habitacion_id.precio;
+    },
     close: function close() {
       var _this5 = this;
 
@@ -2492,7 +2501,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = {
         fecha: this.editedItem.fecha,
         cliente_id: this.editedItem.cliente_id,
-        habitacion_id: this.editedItem.habitacion_id,
+        habitacion_id: this.editedItem.habitacion_id.id,
         dias: this.editedItem.dias,
         total: this.editedItem.total
       };
@@ -22954,7 +22963,13 @@ var render = function() {
                                                       chips: "",
                                                       label: "Habitacion",
                                                       "item-text": "codigo",
-                                                      "item-value": "id"
+                                                      "item-value": "id",
+                                                      "return-object": ""
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        return _vm.actualizarTotal()
+                                                      }
                                                     },
                                                     model: {
                                                       value:
@@ -22990,6 +23005,11 @@ var render = function() {
                                             [
                                               _c("v-text-field", {
                                                 attrs: { label: "Dias" },
+                                                on: {
+                                                  change: function($event) {
+                                                    return _vm.actualizarTotal()
+                                                  }
+                                                },
                                                 model: {
                                                   value: _vm.editedItem.dias,
                                                   callback: function($$v) {
