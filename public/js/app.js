@@ -1823,11 +1823,8 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: "Apellidos",
         value: "apellidos"
-      }, {
-        text: "Actions",
-        value: "actions",
-        sortable: false
-      }],
+      } // { text: "Actions", value: "actions", sortable: false }
+      ],
       clientes: [],
       editedIndex: -1,
       editedItem: {
@@ -2027,42 +2024,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2079,10 +2040,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: "Precio",
         value: "precio"
-      }, {
-        text: "Actions",
-        value: "actions",
-        sortable: false
       }],
       habitaciones: [],
       editedIndex: -1,
@@ -2102,7 +2059,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? "Nuevo Cliente" : "Editar Cliente";
+      return this.editedIndex === -1 ? "Nueva habitacion" : "Editar habitacion";
     }
   },
   watch: {
@@ -2153,7 +2110,7 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       var _this4 = this;
 
-      if (!this.editedItem.dni) {
+      if (!this.editedItem.codigo) {
         notify.error("Ingrese codigo");
         return;
       }
@@ -2269,6 +2226,237 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.modifyDrawer(value);
   }
 })), _data$watch$computed$);
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reserva.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Reserva.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dialog: false,
+      headers: [{
+        text: "Fecha",
+        value: "fecha"
+      }, {
+        text: "Cliente",
+        value: "cliente_id"
+      }, {
+        text: "Habitacion",
+        value: "habitacion_id"
+      }, {
+        text: "Dias",
+        value: "dias"
+      }, {
+        text: "Total",
+        value: "total"
+      } // { text: "Actions", value: "actions", sortable: false }
+      ],
+      reservas: [],
+      editedIndex: -1,
+      editedItem: {
+        fecha: "",
+        cliente_id: "",
+        habitacion_id: "",
+        dias: "",
+        total: ""
+      },
+      defaultItem: {
+        fecha: "",
+        cliente_id: "",
+        habitacion_id: "",
+        dias: "",
+        total: ""
+      }
+    };
+  },
+  computed: {
+    formTitle: function formTitle() {
+      return this.editedIndex === -1 ? "Nueva Reserva" : "Editar Reserva";
+    }
+  },
+  watch: {
+    dialog: function dialog(val) {
+      val || this.close();
+    }
+  },
+  created: function created() {
+    this.initialize();
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/api/reservas").then(function (_ref) {
+      var data = _ref.data;
+      _this.reservas = data;
+    });
+  },
+  methods: {
+    initialize: function initialize() {
+      this.reset();
+      this.close();
+      this.getreservas();
+    },
+    getreservas: function getreservas() {
+      var _this2 = this;
+
+      axios.get("/api/reservas").then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.reservas = data;
+      });
+    },
+    close: function close() {
+      var _this3 = this;
+
+      this.dialog = false;
+      setTimeout(function () {
+        _this3.editedItem = Object.assign({}, _this3.defaultItem);
+        _this3.editedIndex = -1;
+      }, 300);
+    },
+    reset: function reset() {
+      this.editedItem["fecha"] = "";
+      this.editedItem["cliente_id"] = "";
+      this.editedItem["habitacion_id"] = "";
+      this.editedItem["dias"] = "";
+      this.editedItem["total"] = "";
+    },
+    save: function save() {
+      var _this4 = this;
+
+      if (!this.editedItem.fecha) {
+        notify.error("Ingrese fecha");
+        return;
+      }
+
+      if (!this.editedItem.cliente_id) {
+        notify.error("Ingrese cliente ");
+        return;
+      }
+
+      if (!this.editedItem.habitacion_id) {
+        notify.error("Ingrese habitacion ");
+        return;
+      }
+
+      if (!this.editedItem.dias) {
+        notify.error("Ingrese dias ");
+        return;
+      }
+
+      var data = {
+        fecha: this.editedItem.fecha,
+        cliente_id: this.editedItem.cliente_id,
+        habitacion_id: this.editedItem.habitacion_id,
+        dias: this.editedItem.dias,
+        total: this.editedItem.total
+      };
+      axios.post("/api/reservas/store", data).then(function (_ref3) {
+        var data = _ref3.data;
+        notify.showCool(data.message);
+
+        _this4.initialize();
+      })["catch"](function (error) {
+        console.log("Entro aqui");
+        notify.error(error.response.data.message); // notify.error("Ocurrio un problema");
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -22159,7 +22347,11 @@ var render = function() {
                             [
                               _c("v-card-title", [
                                 _c("span", { staticClass: "headline" }, [
-                                  _vm._v(_vm._s(_vm.formTitle))
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(_vm.formTitle) +
+                                      "\n                "
+                                  )
                                 ])
                               ]),
                               _vm._v(" "),
@@ -22226,7 +22418,7 @@ var render = function() {
                                                     )
                                                   },
                                                   expression:
-                                                    "\n                                                    editedItem.descripcion\n                                                "
+                                                    "\n                                                      editedItem.descripcion\n                                                  "
                                                 }
                                               })
                                             ],
@@ -22352,35 +22544,19 @@ var render = function() {
                           fn: function(props) {
                             return [
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(props.item.codigo) +
-                                    "\n                        "
-                                )
+                                _vm._v(_vm._s(props.item.codigo))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(props.item.descripcion) +
-                                    "\n                        "
-                                )
+                                _vm._v(_vm._s(props.item.descripcion))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(props.item.estado) +
-                                    "\n                        "
-                                )
+                                _vm._v(_vm._s(props.item.estado))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(props.item.precio) +
-                                    "\n                        "
-                                )
+                                _vm._v(_vm._s(props.item.precio))
                               ])
                             ]
                           }
@@ -22508,6 +22684,381 @@ var render = function() {
               }
             })
           ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reserva.vue?vue&type=template&id=7a441a1d&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Reserva.vue?vue&type=template&id=7a441a1d& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "", "grid-list-lg": "", "text-xs-center": "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", sm12: "", md12: "" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    { attrs: { flat: "", color: "white" } },
+                    [
+                      _c("v-toolbar-title", [_vm._v("RESERVAS")]),
+                      _vm._v(" "),
+                      _c("v-divider", {
+                        staticClass: "mx-2",
+                        attrs: { inset: "", vertical: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-dialog",
+                        {
+                          attrs: { "max-width": "500px" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      {
+                                        staticClass: "mb-2",
+                                        attrs: { color: "primary", dark: "" }
+                                      },
+                                      on
+                                    ),
+                                    [_vm._v("Nueva Reserva")]
+                                  )
+                                ]
+                              }
+                            }
+                          ]),
+                          model: {
+                            value: _vm.dialog,
+                            callback: function($$v) {
+                              _vm.dialog = $$v
+                            },
+                            expression: "dialog"
+                          }
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            [
+                              _c("v-card-title", [
+                                _c("span", { staticClass: "headline" }, [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(_vm.formTitle) +
+                                      "\n                "
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-container",
+                                    { attrs: { "grid-list-md": "" } },
+                                    [
+                                      _c(
+                                        "v-layout",
+                                        { attrs: { wrap: "" } },
+                                        [
+                                          _c(
+                                            "v-flex",
+                                            {
+                                              attrs: {
+                                                xs12: "",
+                                                sm12: "",
+                                                md12: ""
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: { label: "Fecha" },
+                                                model: {
+                                                  value: _vm.editedItem.fecha,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.editedItem,
+                                                      "fecha",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "editedItem.fecha"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-flex",
+                                            {
+                                              attrs: {
+                                                xs12: "",
+                                                sm12: "",
+                                                md12: ""
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: { label: "Cliente" },
+                                                model: {
+                                                  value:
+                                                    _vm.editedItem.cliente_id,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.editedItem,
+                                                      "cliente_id",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "editedItem.cliente_id"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-flex",
+                                            {
+                                              attrs: {
+                                                xs12: "",
+                                                sm12: "",
+                                                md12: ""
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: { label: "Habitacion" },
+                                                model: {
+                                                  value:
+                                                    _vm.editedItem
+                                                      .habitacion_id,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.editedItem,
+                                                      "habitacion_id",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "editedItem.habitacion_id"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-flex",
+                                            {
+                                              attrs: {
+                                                xs12: "",
+                                                sm12: "",
+                                                md12: ""
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: { label: "Dias" },
+                                                model: {
+                                                  value: _vm.editedItem.dias,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.editedItem,
+                                                      "dias",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "editedItem.dias"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-flex",
+                                            {
+                                              attrs: {
+                                                xs12: "",
+                                                sm12: "",
+                                                md12: ""
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: { label: "Total" },
+                                                model: {
+                                                  value: _vm.editedItem.total,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.editedItem,
+                                                      "total",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "editedItem.total"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-actions",
+                                [
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        color: "error darken-1",
+                                        flat: ""
+                                      },
+                                      on: { click: _vm.close }
+                                    },
+                                    [_vm._v("Cancel")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        color: "blue darken-1",
+                                        flat: ""
+                                      },
+                                      on: { click: _vm.save }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-data-table",
+                    {
+                      staticClass: "elevation-1",
+                      attrs: { headers: _vm.headers, items: _vm.reservas },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "items",
+                          fn: function(props) {
+                            return [
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.fecha))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.cliente_id))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.habitacion_id))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.dias))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.total))
+                              ])
+                            ]
+                          }
+                        }
+                      ])
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "template",
+                        { slot: "no-data" },
+                        [
+                          _c(
+                            "v-alert",
+                            {
+                              staticStyle: { margin: "1.5em 0" },
+                              attrs: {
+                                value: true,
+                                color: "info",
+                                icon: "warning"
+                              }
+                            },
+                            [_vm._v("Aún no se han agregado reservas :(")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
@@ -65147,17 +65698,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _Reserva_vue_vue_type_template_id_7a441a1d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reserva.vue?vue&type=template&id=7a441a1d& */ "./resources/js/components/Reserva.vue?vue&type=template&id=7a441a1d&");
+/* harmony import */ var _Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reserva.vue?vue&type=script&lang=js& */ "./resources/js/components/Reserva.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Reserva_vue_vue_type_template_id_7a441a1d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Reserva_vue_vue_type_template_id_7a441a1d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -65165,8 +65719,42 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/components/Reserva.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Reserva.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Reserva.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Reserva.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reserva.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Reserva.vue?vue&type=template&id=7a441a1d&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Reserva.vue?vue&type=template&id=7a441a1d& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_7a441a1d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Reserva.vue?vue&type=template&id=7a441a1d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Reserva.vue?vue&type=template&id=7a441a1d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_7a441a1d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_7a441a1d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -65334,8 +65922,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/abel/Programming/hotel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/abel/Programming/hotel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\hotel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\hotel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

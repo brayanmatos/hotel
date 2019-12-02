@@ -16,8 +16,8 @@ class ReservaController extends Controller
     public function index()
     {
         //
-        $reserva = DB::table('reserva')->get();
-        return $reserva;
+        $reservas = DB::table('reservas')->get();
+        return $reservas;
     }
 
     /**

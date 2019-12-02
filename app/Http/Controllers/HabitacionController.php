@@ -16,7 +16,7 @@ class HabitacionController extends Controller
     public function index()
     {
         //
-        $habitaciones = DB::table('habitaciones')->get();
+        $habitaciones = DB::table('habitacions')->get();
         return $habitaciones;
     }
 

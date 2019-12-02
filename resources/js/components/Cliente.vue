@@ -119,7 +119,7 @@ export default {
             { text: "Dni", value: "dni" },
             { text: "Nombres", value: "nombres" },
             { text: "Apellidos", value: "apellidos" },
-            { text: "Actions", value: "actions", sortable: false }
+            // { text: "Actions", value: "actions", sortable: false }
         ],
         clientes: [],
         editedIndex: -1,

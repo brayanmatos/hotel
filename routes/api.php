@@ -18,5 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('clientes/store', 'ClienteController@store');
 Route::get('clientes', 'ClienteController@index');
+
 Route::post('habitaciones/store', 'HabitacionController@store');
+Route::get('habitaciones', 'HabitacionController@index');
+
 Route::post('reservas/store', 'ReservaController@store');
+Route::get('reservas', 'ReservaController@index');
