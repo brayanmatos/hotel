@@ -2325,6 +2325,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2334,10 +2352,10 @@ __webpack_require__.r(__webpack_exports__);
         value: "fecha"
       }, {
         text: "Cliente",
-        value: "cliente_id"
+        value: "nombres"
       }, {
         text: "Habitacion",
-        value: "habitacion_id"
+        value: "codigo"
       }, {
         text: "Dias",
         value: "dias"
@@ -2347,6 +2365,8 @@ __webpack_require__.r(__webpack_exports__);
       } // { text: "Actions", value: "actions", sortable: false }
       ],
       reservas: [],
+      clientes: [],
+      habitaciones: [],
       editedIndex: -1,
       editedItem: {
         fecha: "",
@@ -2389,6 +2409,8 @@ __webpack_require__.r(__webpack_exports__);
     initialize: function initialize() {
       this.reset();
       this.close();
+      this.getclientes();
+      this.gethabitaciones();
       this.getreservas();
     },
     getreservas: function getreservas() {
@@ -2399,13 +2421,29 @@ __webpack_require__.r(__webpack_exports__);
         _this2.reservas = data;
       });
     },
-    close: function close() {
+    getclientes: function getclientes() {
       var _this3 = this;
+
+      axios.get("/api/clientes").then(function (_ref3) {
+        var data = _ref3.data;
+        _this3.clientes = data;
+      });
+    },
+    gethabitaciones: function gethabitaciones() {
+      var _this4 = this;
+
+      axios.get("/api/habitaciones").then(function (_ref4) {
+        var data = _ref4.data;
+        _this4.habitaciones = data;
+      });
+    },
+    close: function close() {
+      var _this5 = this;
 
       this.dialog = false;
       setTimeout(function () {
-        _this3.editedItem = Object.assign({}, _this3.defaultItem);
-        _this3.editedIndex = -1;
+        _this5.editedItem = Object.assign({}, _this5.defaultItem);
+        _this5.editedIndex = -1;
       }, 300);
     },
     reset: function reset() {
@@ -2416,7 +2454,7 @@ __webpack_require__.r(__webpack_exports__);
       this.editedItem["total"] = "";
     },
     save: function save() {
-      var _this4 = this;
+      var _this6 = this;
 
       if (!this.editedItem.fecha) {
         notify.error("Ingrese fecha");
@@ -2445,11 +2483,11 @@ __webpack_require__.r(__webpack_exports__);
         dias: this.editedItem.dias,
         total: this.editedItem.total
       };
-      axios.post("/api/reservas/store", data).then(function (_ref3) {
-        var data = _ref3.data;
+      axios.post("/api/reservas/store", data).then(function (_ref5) {
+        var data = _ref5.data;
         notify.showCool(data.message);
 
-        _this4.initialize();
+        _this6.initialize();
       })["catch"](function (error) {
         console.log("Entro aqui");
         notify.error(error.response.data.message); // notify.error("Ocurrio un problema");
@@ -22838,8 +22876,15 @@ var render = function() {
                                               }
                                             },
                                             [
-                                              _c("v-text-field", {
-                                                attrs: { label: "Cliente" },
+                                              _c("v-select", {
+                                                attrs: {
+                                                  items: _vm.clientes,
+                                                  attach: "",
+                                                  chips: "",
+                                                  label: "Cliente",
+                                                  "item-text": "nombres",
+                                                  "item-value": "id"
+                                                },
                                                 model: {
                                                   value:
                                                     _vm.editedItem.cliente_id,
@@ -22868,23 +22913,43 @@ var render = function() {
                                               }
                                             },
                                             [
-                                              _c("v-text-field", {
-                                                attrs: { label: "Habitacion" },
-                                                model: {
-                                                  value:
-                                                    _vm.editedItem
-                                                      .habitacion_id,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.editedItem,
-                                                      "habitacion_id",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression:
-                                                    "editedItem.habitacion_id"
-                                                }
-                                              })
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm12: "",
+                                                    md12: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-select", {
+                                                    attrs: {
+                                                      items: _vm.habitaciones,
+                                                      attach: "",
+                                                      chips: "",
+                                                      label: "Habitacion",
+                                                      "item-text": "codigo",
+                                                      "item-value": "id"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm.editedItem
+                                                          .habitacion_id,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.editedItem,
+                                                          "habitacion_id",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "editedItem.habitacion_id"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
                                             ],
                                             1
                                           ),
@@ -23010,11 +23075,11 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.cliente_id))
+                                _vm._v(_vm._s(props.item.cliente.nombres))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.habitacion_id))
+                                _vm._v(_vm._s(props.item.habitacion.codigo))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [

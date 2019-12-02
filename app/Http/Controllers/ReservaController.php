@@ -16,7 +16,7 @@ class ReservaController extends Controller
     public function index()
     {
         //
-        $reservas = DB::table('reservas')->get();
+        $reservas = Reserva::with(['cliente','habitacion'])->orderBy('fecha')->get();
         return $reservas;
     }
 

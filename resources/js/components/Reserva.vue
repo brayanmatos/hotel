@@ -27,10 +27,28 @@
                         <v-text-field v-model="editedItem.fecha" label="Fecha"></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
-                        <v-text-field v-model="editedItem.cliente_id" label="Cliente"></v-text-field>
+                        <v-select
+                          v-model="editedItem.cliente_id"
+                          v-bind:items="clientes"
+                          attach
+                          chips
+                          label="Cliente"
+                          item-text="nombres"
+                          item-value="id"
+                        ></v-select>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
-                        <v-text-field v-model="editedItem.habitacion_id" label="Habitacion"></v-text-field>
+                        <v-flex xs12 sm12 md12>
+                          <v-select
+                            v-model="editedItem.habitacion_id"
+                            v-bind:items="habitaciones"
+                            attach
+                            chips
+                            label="Habitacion"
+                            item-text="codigo"
+                            item-value="id"
+                          ></v-select>
+                        </v-flex>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
                         <v-text-field v-model="editedItem.dias" label="Dias"></v-text-field>
@@ -53,8 +71,8 @@
           <v-data-table :headers="headers" :items="reservas" class="elevation-1">
             <template v-slot:items="props">
               <td class="text-xs-left">{{ props.item.fecha }}</td>
-              <td class="text-xs-left">{{ props.item.cliente_id }}</td>
-              <td class="text-xs-left">{{ props.item.habitacion_id }}</td>
+              <td class="text-xs-left">{{ props.item.cliente.nombres }}</td>
+              <td class="text-xs-left">{{ props.item.habitacion.codigo }}</td>
               <td class="text-xs-left">{{ props.item.dias }}</td>
               <td class="text-xs-left">{{ props.item.total }}</td>
 
@@ -91,14 +109,16 @@ export default {
     dialog: false,
     headers: [
       { text: "Fecha", value: "fecha" },
-      { text: "Cliente", value: "cliente_id" },
-      { text: "Habitacion", value: "habitacion_id" },
+      { text: "Cliente", value: "nombres" },
+      { text: "Habitacion", value: "codigo" },
       { text: "Dias", value: "dias" },
       { text: "Total", value: "total" }
 
       // { text: "Actions", value: "actions", sortable: false }
     ],
     reservas: [],
+    clientes: [],
+    habitaciones: [],
     editedIndex: -1,
     editedItem: {
       fecha: "",
@@ -137,11 +157,23 @@ export default {
     initialize() {
       this.reset();
       this.close();
+      this.getclientes();
+      this.gethabitaciones();
       this.getreservas();
     },
     getreservas() {
       axios.get("/api/reservas").then(({ data }) => {
         this.reservas = data;
+      });
+    },
+    getclientes() {
+      axios.get("/api/clientes").then(({ data }) => {
+        this.clientes = data;
+      });
+    },
+    gethabitaciones() {
+      axios.get("/api/habitaciones").then(({ data }) => {
+        this.habitaciones = data;
       });
     },
     close() {
